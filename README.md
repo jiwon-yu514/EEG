@@ -2,13 +2,13 @@
 
 ## 연구 배경 (Research Background)
 
-- **EEG(Electroencephalography)**는 두피 전극으로 뇌 활동을 실시간 측정하는 **비침습적(non-invasive) 기술**로, 침습 시술이 어려운 대상에게도 직접적인 brain activity 평가가 가능함.
+- **EEG(Electroencephalograph)**: 두피 전극으로 뇌 활동을 실시간 측정하는 **비침습적(non-invasive) 기술**로, 침습 시술이 어려운 대상에게도 직접적인 brain activity 평가가 가능함.
 - 하지만 EEG 신호는  
   - 진폭이 매우 낮고  
   - 눈 움직임, 근육 활동, 외부 전기 간섭 등에 쉽게 오염되며  
   - 여러 뇌 원천 신호가 합쳐진 형태로 관측되어  
   **낮은 SNR과 제한적인 공간 해상도**라는 근본적인 한계를 가짐.
-- 피험자 간(inter-subject), 세션 간(inter-session), 장비·환경 차이로 인해 도메인 갭(domain gap)이 발생하고, 이로 인해 학습 분포와 실제 테스트 환경이 달라지면 **EEG 기반 ML 모델의 일반화 성능이 쉽게 저하**됨.
+- 피험자 간(inter-subject), 세션 간(inter-session), 장비·환경 차이로 인해 **도메인 갭(domain gap)** 발생하고, 이로 인해 학습 분포와 실제 테스트 환경이 달라지면 **EEG 기반 ML 모델의 일반화 성능이 쉽게 저하**됨.
 - 이를 완화하기 위해 다양한 **전이 학습(Transfer Learning, TL)** 기반 방법들이 제안되었지만,  
   도메인 갭을 완전히 제거하지 못하고, **대규모 파라미터를 재학습해야 하는 높은 계산 비용**이라는 한계를 여전히 가짐.
 
