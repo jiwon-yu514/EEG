@@ -14,13 +14,13 @@
 
 - 입력: trial 단위 **EEG 신호 (X)** 및 피험자 정보 (P)  
 - 출력: trial 단위 **반응시간 (RT)**  
-- 설정: **학습에 포함되지 않은 Release / 피험자에 대한 제로-샷 회귀 성능 평가** :contentReference[oaicite:0]{index=0}  
+- 설정: **학습에 포함되지 않은 Release / 피험자에 대한 제로-샷 회귀 성능 평가** 
 
 ---
 
 ## Motivation
 
-EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비침습적·실시간** 측정할 수 있는 강력한 도구지만, 다음과 같은 이유로 분석이 어렵습니다. :contentReference[oaicite:1]{index=1}  
+EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비침습적·실시간** 측정할 수 있는 강력한 도구지만, 다음과 같은 이유로 분석이 어렵습니다. 
 
 - **낮은 SNR (Signal-to-Noise Ratio)**  
 - 안구/근전도/환경 잡음 및 두피 혼합으로 인한 **신호 해석 및 공간 분리의 어려움**
@@ -28,13 +28,12 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
   → 학습 시점과 테스트 시점의 분포 차이로 **성능 괴리 발생**
 
 기존 **EEG 전이학습(Transfer Learning)** 접근은 도메인 갭을 줄이기 위해 여전히 **보정(calibration) 데이터**를 필요로 하는 경우가 많고,  
-**cross-task / cross-subject 일반화**를 완전히 해결하지 못하고 있습니다. :contentReference[oaicite:2]{index=2}  
-
+**cross-task / cross-subject 일반화**를 완전히 해결하지 못하고 있습니다. 
 ---
 
 ## Related Work: EEG Foundation Challenge
 
-본 프로젝트는 **EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding** 벤치마크 문제 설정을 기반으로 합니다. :contentReference[oaicite:3]{index=3}  
+본 프로젝트는 **EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding** 벤치마크 문제 설정을 기반으로 합니다. 
 
 - **HBN-EEG**:  
   - 다양한 인지 과제(총 6개 이상) + 다수 피험자가 섞여 있는 **대규모 EEG 데이터셋**
@@ -52,7 +51,6 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
 
 > **CCD 과제 EEG만을 사용한, EEGNet 기반 제로-샷 반응시간 회귀 모델 구축**
 
-구체적으로: :contentReference[oaicite:4]{index=4}  
 
 1. **EEGNet 인코더 + MLP 회귀 헤드**를 end-to-end로 학습
 2. **Non-CCD task로는 사전학습(pretraining)을 수행하지 않고**,  
@@ -77,7 +75,6 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
 
 ### 과제(Task) 구성
 
-슬라이드 기준 과제 목록은 다음과 같습니다. 
 
 - **Active-task (능동 과제)**  
   - Surround Suppression (**SuS**)  
@@ -93,20 +90,18 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
 
 ### CCD vs Non-CCD 상관관계
 
-슬라이드에서 보고된 바에 따르면, **CCD task와 Non-CCD task 간 RT 상관관계**를 계산한 결과,  
+ **CCD task와 Non-CCD task 간 RT 상관관계**를 계산한 결과,  
 Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 나타났습니다.  
 
 이에 따라,  
 - **Non-CCD 데이터로 사전학습을 수행하지 않고**,  
-- **CCD task 데이터만으로 모델을 학습**하는 설계를 채택했습니다. :contentReference[oaicite:7]{index=7}  
+- **CCD task 데이터만으로 모델을 학습**하는 설계를 채택했습니다. 
 
-(구체적인 수치는 슬라이드의 표 1을 따릅니다.)
 
 ---
 
 ## 전처리 파이프라인 (Preprocessing)
-
-슬라이드에서 제시된 전처리 단계는 다음과 같습니다. :contentReference[oaicite:8]{index=8}  
+ 
 
 1. **필터링 및 재표본화 (Filtering & Resampling)**  
    - EEG 신호 대역 필터링  
@@ -134,7 +129,6 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
    - 피험자별로 RT 분포를 정규화하여,  
      모델이 **상대적인 trial 간 변동성**에 더 집중하도록 설정  
 
-> 슬라이드의 전처리 전·후 예시(그림 5)는 위 단계 적용 전/후의 신호 변화를 시각적으로 보여줍니다.
 
 ---
 
@@ -157,8 +151,6 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 - **학습 방식**:  
   - 인코더(EEGNet)와 회귀 헤드를 **end-to-end로 공동 학습**
 
-> 슬라이드의 모델 구조도(그림 6)는 위 구성을 시각적으로 표현합니다.
-
 ---
 
 ## 평가 지표 (Evaluation Metrics)
@@ -174,8 +166,6 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 3. **nRMSE (normalized RMSE)**  
    - RMSE를 특정 기준(예: 값 범위, 표준편차 등)으로 정규화한 값  
-   - 슬라이드에서는 **정규화된 RMSE** 지표를 사용했다고만 명시되어 있으며,  
-     **구체적인 정규화 방식은 코드 및 논문 본문에 따름**
 
 ---
 
@@ -199,7 +189,6 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ## 실험 결과 요약 (Experimental Results)
 
-슬라이드의 표 2에 보고된 결과를 요약하면 다음과 같습니다. }  
 
 - **5가지 Train/Test Release 조합**에서의 제로-샷 Test 성능:
 
@@ -225,8 +214,6 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
   제로-샷 성능에 **상당한 영향을 미침**  
   → 동일한 모델이라도 Test Release에 따라 상관계수가 크게 달라짐
 
-위 내용은 **슬라이드에 보고된 수치와 서술을 그대로 정리한 것**이며,  
-추가적인 통계 분석이나 과대해석은 포함하지 않았습니다.
 
 ---
 
