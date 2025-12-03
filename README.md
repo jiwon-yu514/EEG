@@ -73,11 +73,11 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
   - 자극(onset) 이벤트  
   - 반응(response) 이벤트  
   주석(annotation) 제공
-- 이 프로젝트에서는 **12개 Release 중 1–5 Release만 활용** :contentReference[oaicite:5]{index=5}  
+- 이 프로젝트에서는 **12개 Release 중 1–5 Release만 활용**  
 
 ### 과제(Task) 구성
 
-슬라이드 기준 과제 목록은 다음과 같습니다. :contentReference[oaicite:6]{index=6}  
+슬라이드 기준 과제 목록은 다음과 같습니다. 
 
 - **Active-task (능동 과제)**  
   - Surround Suppression (**SuS**)  
@@ -123,16 +123,16 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 4. **반응 기준 구간 추출 (Response-Locked Epoching)**  
    - 버튼 반응 시점을 기준으로 일정 시간 구간(epoch)을 추출  
-   - 최종 입력 형태: \((N_{\text{trial}}, C, T)\)
+   - 최종 입력 형태: \((N, C, T))
 
 5. **채널 표준화 – 피험자별 Normalization**  
    - 피험자마다 채널 분포가 다른 문제를 줄이기 위해  
-   - 동일 피험자 내에서 채널 기준 표준화 수행 :contentReference[oaicite:9]{index=9}  
+   - 동일 피험자 내에서 채널 기준 표준화 수행  
 
 6. **RT(반응시간) 표준화 – 피험자별 Normalization**  
    - 피험자마다 전반적인 RT 수준이 다르므로  
    - 피험자별로 RT 분포를 정규화하여,  
-     모델이 **상대적인 trial 간 변동성**에 더 집중하도록 설정 :contentReference[oaicite:10]{index=10}  
+     모델이 **상대적인 trial 간 변동성**에 더 집중하도록 설정  
 
 > 슬라이드의 전처리 전·후 예시(그림 5)는 위 단계 적용 전/후의 신호 변화를 시각적으로 보여줍니다.
 
@@ -140,7 +140,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ## 모델 구조 (Model Architecture)
 
-본 프로젝트의 모델은 **EEGNet 기반 단일 인코더 + 회귀 헤드(MLP)** 구조로 구성됩니다. :contentReference[oaicite:11]{index=11}  
+본 프로젝트의 모델은 **EEGNet 기반 단일 인코더 + 회귀 헤드(MLP)** 구조로 구성됩니다.   
 
 - **Backbone**:  
   - EEGNet 인코더  
@@ -161,7 +161,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ## 평가 지표 (Evaluation Metrics)
 
-본 프로젝트에서 사용한 평가지표는 다음과 같습니다. :contentReference[oaicite:12]{index=12}  
+본 프로젝트에서 사용한 평가지표는 다음과 같습니다.   
 
 1. **MAE (Mean Absolute Error)**  
    - 예측 RT와 실제 RT 간의 **절대 오차의 평균**
@@ -182,7 +182,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 ### Release 조합 – 제로-샷 설정
 
 - HBN-EEG의 **Release 1–5**를 사용하여,  
-  여러 가지 **Train/Test Release 조합**(총 5가지)을 구성했습니다. :contentReference[oaicite:13]{index=13}  
+  여러 가지 **Train/Test Release 조합**(총 5가지)을 구성했습니다. 
 
 - 각 실험에서  
   - 일부 Release는 **학습(train) 전용**,  
@@ -197,7 +197,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ## 실험 결과 요약 (Experimental Results)
 
-슬라이드의 표 2에 보고된 결과를 요약하면 다음과 같습니다. :contentReference[oaicite:14]{index=14}  
+슬라이드의 표 2에 보고된 결과를 요약하면 다음과 같습니다. }  
 
 - **5가지 Train/Test Release 조합**에서의 제로-샷 Test 성능:
 
@@ -214,7 +214,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
   - **R1**을 테스트로 둔 경우  
     → 상관계수 \( r \approx 0.27 \)로 **가장 낮은 성능**
 
-### 🧾 해석 (슬라이드 기반 정리)
+### 해석
 
 
 - **CCD EEG만으로도**  
