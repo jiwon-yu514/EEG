@@ -5,12 +5,9 @@
 > **Healthy Brain Network (HBN) – Contrast Change Detection (CCD) EEG만을 이용한  
 > EEGNet 기반 제로-샷(Zero-Shot) 반응시간 회귀 모델**
 
-정민규 · 유지원  
-Department of Medical Artificial Intelligence, Konyang University  
-
 ---
 
-## 🔍 프로젝트 개요 (Overview)
+## 프로젝트 개요 (Overview)
 
 이 프로젝트는 **HBN-EEG의 CCD 과제**에서 얻은 **128채널 EEG**만을 사용해,  
 **EEGNet 기반 단일 인코더 + 회귀 헤드**로 **버튼 반응시간(Response Time, RT)** 을 예측하는 모델을 구현하고 평가하는 것을 목표로 합니다.  
@@ -21,7 +18,7 @@ Department of Medical Artificial Intelligence, Konyang University
 
 ---
 
-## 🧠 Motivation
+## Motivation
 
 EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비침습적·실시간** 측정할 수 있는 강력한 도구지만, 다음과 같은 이유로 분석이 어렵습니다. :contentReference[oaicite:1]{index=1}  
 
@@ -35,7 +32,7 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
 
 ---
 
-## 📚 Related Work: EEG Foundation Challenge
+## Related Work: EEG Foundation Challenge
 
 본 프로젝트는 **EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding** 벤치마크 문제 설정을 기반으로 합니다. :contentReference[oaicite:3]{index=3}  
 
@@ -51,7 +48,7 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
 
 ---
 
-## 🎯 연구 목표 (Goal)
+## 연구 목표 (Goal)
 
 > **CCD 과제 EEG만을 사용한, EEGNet 기반 제로-샷 반응시간 회귀 모델 구축**
 
@@ -66,7 +63,7 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
 
 ---
 
-## 🧾 데이터셋: HBN-EEG (Healthy Brain Network EEG)
+## 데이터셋: HBN-EEG (Healthy Brain Network EEG)
 
 - 제공 기관: **Child Mind Institute**  
 - 대상: **5–21세 아동·청소년**  
@@ -78,7 +75,7 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
   주석(annotation) 제공
 - 이 프로젝트에서는 **12개 Release 중 1–5 Release만 활용** :contentReference[oaicite:5]{index=5}  
 
-### 📌 과제(Task) 구성
+### 과제(Task) 구성
 
 슬라이드 기준 과제 목록은 다음과 같습니다. :contentReference[oaicite:6]{index=6}  
 
@@ -94,7 +91,7 @@ EEG(Electroencephalography)는 두피 전극으로 뇌의 전기 활동을 **비
 
 이 중 본 프로젝트는 **CCD task**만을 사용하여 모델을 학습·평가합니다.
 
-### 📊 CCD vs Non-CCD 상관관계
+### CCD vs Non-CCD 상관관계
 
 슬라이드에서 보고된 바에 따르면, **CCD task와 Non-CCD task 간 RT 상관관계**를 계산한 결과,  
 Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 나타났습니다.  
@@ -107,7 +104,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ---
 
-## ⚙️ 전처리 파이프라인 (Preprocessing)
+## 전처리 파이프라인 (Preprocessing)
 
 슬라이드에서 제시된 전처리 단계는 다음과 같습니다. :contentReference[oaicite:8]{index=8}  
 
@@ -141,7 +138,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ---
 
-## 🧩 모델 구조 (Model Architecture)
+## 모델 구조 (Model Architecture)
 
 본 프로젝트의 모델은 **EEGNet 기반 단일 인코더 + 회귀 헤드(MLP)** 구조로 구성됩니다. :contentReference[oaicite:11]{index=11}  
 
@@ -162,7 +159,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ---
 
-## 📏 평가 지표 (Evaluation Metrics)
+## 평가 지표 (Evaluation Metrics)
 
 본 프로젝트에서 사용한 평가지표는 다음과 같습니다. :contentReference[oaicite:12]{index=12}  
 
@@ -180,9 +177,9 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ---
 
-## 🧪 실험 설정 (Experimental Settings)
+## 실험 설정 (Experimental Settings)
 
-### 🔁 Release 조합 – 제로-샷 설정
+### Release 조합 – 제로-샷 설정
 
 - HBN-EEG의 **Release 1–5**를 사용하여,  
   여러 가지 **Train/Test Release 조합**(총 5가지)을 구성했습니다. :contentReference[oaicite:13]{index=13}  
@@ -198,7 +195,7 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ---
 
-## 📊 실험 결과 요약 (Experimental Results)
+## 실험 결과 요약 (Experimental Results)
 
 슬라이드의 표 2에 보고된 결과를 요약하면 다음과 같습니다. :contentReference[oaicite:14]{index=14}  
 
@@ -219,7 +216,6 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ### 🧾 해석 (슬라이드 기반 정리)
 
-슬라이드의 설명에 기반하면, 다음과 같은 결론을 얻을 수 있습니다. :contentReference[oaicite:15]{index=15}  
 
 - **CCD EEG만으로도**  
   trial 간 **반응시간 변동성을 일정 수준까지 예측** 가능
@@ -232,9 +228,8 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ---
 
-## ✅ 결론 (Conclusion)
+## 결론 (Conclusion)
 
-슬라이드의 결론부를 정리하면 다음과 같습니다. :contentReference[oaicite:16]{index=16}  
 
 1. **단일 EEGNet 인코더 + MLP 헤드**만으로도  
    - 학습에 포함되지 않은 Release 및 피험자에 대해  
@@ -252,9 +247,8 @@ Non-CCD 데이터는 CCD RT 예측에 **큰 기여를 하지 못할 것**으로 
 
 ---
 
-## 🔮 향후 과제 (Future Work)
+## 향후 과제 (Future Work)
 
-슬라이드에서 제안된 후속 연구 방향은 다음과 같습니다. :contentReference[oaicite:17]{index=17}  
 
 1. **데이터 증강 (Data Augmentation)**  
    - 다양한 노이즈, 시간 왜곡, 채널 드랍아웃 등 EEG 특화 증강 기법 도입 가능
